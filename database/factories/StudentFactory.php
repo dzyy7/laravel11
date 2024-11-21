@@ -23,7 +23,7 @@ class StudentFactory extends Factory
         return [
             'Name' => fake()->name(),
             'grade_id' => $grade->id,
-            'department_id' => $grade->department_id,
+            'department_id' => $grade,
             'Email' => fake()->unique()->safeEmail(),
             'Address' => fake()->address(),
         ];

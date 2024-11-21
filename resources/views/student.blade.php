@@ -23,7 +23,7 @@
                             <td class="py-2 px-4 border-b text-sm text-gray-900">{{ $Student->id }}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-900">{{ $Student->Name }}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-500">{{ $Student->grade->name}}</td>
-                            <td class="py-2 px-4 border-b text-sm text-gray-500">{{ $Student->department->name}}</td>
+                            <td class="py-2 px-4 border-b text-sm text-gray-500">{{ $Student->grade->department->name}}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-500">{{ $Student->Email }}</td>
                             <td class="py-2 px-4 border-b text-sm text-gray-500">{{ $Student->Address }}</td>
                         </tr>
