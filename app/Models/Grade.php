@@ -10,14 +10,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Grade extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'department_id',
+    ];
     protected $with = ['students'];
 
-    public function students():HasMany{
+    public function students(): HasMany
+    {
         return $this->hasMany(Student::class);
     }
-    public function department():BelongsTo{
-    {
-        return $this->belongsTo(Department::class);
+    public function department(): BelongsTo
+    { {
+            return $this->belongsTo(Department::class);
+        }
     }
-
-}}
+}

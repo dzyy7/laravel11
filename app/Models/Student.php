@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Student extends Model
 {
     use HasFactory;
+    protected $fillable = ['name', 'grade_id','department_id', 'email', 'telepon', 'address'];
+
     // protected $with = ['Grade'];
 
     public function grade(): BelongsTo
