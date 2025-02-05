@@ -14,23 +14,16 @@
                     <div>
                         <label for="grade_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade/class</label>
                         <select id="grade_id" name="grade_id" required
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5">
                             <option value="">Choose a grade</option>
                             @foreach($grades as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                <option value="{{ $grade->id }}" data-department="{{ $grade->department->name }}">
+                                    {{ $grade->name }} ({{ $grade->department->name }})
+                                </option>
                             @endforeach
                         </select>
                     </div>
-                    <div>
-                        <label for="department_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Department</label>
-                        <select id="department_id" name="department_id" required
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                            <option value="">Choose a department</option>
-                            @foreach($departments as $department)
-                                <option value="{{ $department->id }}">{{ $department->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+
 
 
                     <div class="sm:col-span-2">
@@ -50,5 +43,12 @@
                 </button>
             </form>
         </div>
+        <script>
+            document.getElementById('grade_id').addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const departmentName = selectedOption.getAttribute('data-department');
+                document.getElementById('department_display').value = departmentName || '';
+            });
+            </script>
     </section>
 </x-layout-admin>

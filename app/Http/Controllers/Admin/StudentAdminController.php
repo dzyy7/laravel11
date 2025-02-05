@@ -10,7 +10,9 @@ use Illuminate\Routing\Controller;
 
 class StudentAdminController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     */
     public function index(Request $request)
     {
         $query = $request->input('q');
@@ -49,12 +51,15 @@ class StudentAdminController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'        => 'required|string|max:255',
-            'grade_id'    => 'required|exists:grades,id',
-            'department_id'    => 'required|exists:departments,id',
-            'email'       => 'required|email|max:255',
-            'address'     => 'required|string|max:255',
+            'name'     => 'required|string|max:255',
+            'grade_id' => 'required|exists:grades,id',
+            'email'    => 'required|email|max:255',
+            'address'  => 'required|string|max:255',
         ]);
+
+        // Get department_id from grade
+        $grade = Grade::findOrFail($request->grade_id);
+        $validated['department_id'] = $grade->department_id;
 
         Student::create($validated);
 
