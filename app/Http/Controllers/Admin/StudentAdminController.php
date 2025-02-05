@@ -10,9 +10,7 @@ use Illuminate\Routing\Controller;
 
 class StudentAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index(Request $request)
     {
         $query = $request->input('q');
