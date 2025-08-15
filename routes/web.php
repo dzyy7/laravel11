@@ -10,13 +10,14 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GradeAdminController;
 use App\Http\Controllers\Admin\StudentAdminController;
 use App\Http\Controllers\Admin\DepartmentAdminController;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/admin', function () {
     return view('admin_view.admin');
-});
+})->name('admin.tampil');
 Route::get('/home',[HomeController::class,'index']);
 Route::get('/contact', [ContactController::class,'indexx']);
 Route::get('/student', [StudentController::class,'index']);
@@ -30,6 +31,13 @@ Route::prefix('students')->group(function () {
     Route::get('/', [StudentController::class, 'index']);
     Route::get('/{student}', [StudentController::class, 'show']);
 });
+
+Route::get('/registrasi',[AuthController::class,'tampilRegistrasi'])->name('registrasi.tampil');
+Route::post('/registrasi/submit',[AuthController::class,'submitRegistrasi'])->name('registrasi.submit');
+
+Route::get('/login',[AuthController::class,'tampilLogin'])->name('login.tampil');
+Route::post('/login/submit',[AuthController::class,'submitLogin'])->name('login.submit');
+
 
 Route::prefix('admin')->group(function () {
     Route::prefix('students')->group(function () {

@@ -111,17 +111,20 @@
             <ul class="inline-flex items-stretch -space-x-px">
                 @if ($students->onFirstPage())
                     <li>
-                        <span class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300">1</span>
+                        <span
+                            class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300">1</span>
                     </li>
                 @else
                     <li>
-                        <a href="{{ $students->url(1) }}" class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100">1</a>
+                        <a href="{{ $students->url(1) }}{{ request()->has('q') ? '&q=' . request()->query('q') : '' }}"
+                            class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100">1</a>
                     </li>
                 @endif
 
                 @foreach ($students->getUrlRange(2, $students->lastPage() - 1) as $page => $url)
                     <li>
-                        <a href="{{ $url }}" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 {{ $page == $students->currentPage() ? 'bg-blue-500 text-black' : '' }}">
+                        <a href="{{ $url }}{{ request()->has('q') ? '&q=' . request()->query('q') : '' }}"
+                            class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 {{ $page == $students->currentPage() ? 'bg-blue-500 text-black' : '' }}">
                             {{ $page }}
                         </a>
                     </li>
@@ -129,11 +132,15 @@
 
                 @if ($students->hasMorePages())
                     <li>
-                        <a href="{{ $students->url($students->lastPage()) }}" class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100">{{ $students->lastPage() }}</a>
+                        <a href="{{ $students->url($students->lastPage()) }}{{ request()->has('q') ? '&q=' . request()->query('q') : '' }}"
+                            class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100">
+                            {{ $students->lastPage() }}
+                        </a>
                     </li>
                 @else
                     <li>
-                        <span class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300">{{ $students->lastPage() }}</span>
+                        <span
+                            class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300">{{ $students->lastPage() }}</span>
                     </li>
                 @endif
             </ul>

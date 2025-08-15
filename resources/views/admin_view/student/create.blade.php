@@ -43,12 +43,5 @@
                 </button>
             </form>
         </div>
-        <script>
-            document.getElementById('grade_id').addEventListener('change', function() {
-                const selectedOption = this.options[this.selectedIndex];
-                const departmentName = selectedOption.getAttribute('data-department');
-                document.getElementById('department_display').value = departmentName || '';
-            });
-            </script>
     </section>
 </x-layout-admin>
